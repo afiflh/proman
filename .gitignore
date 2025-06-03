@@ -1,0 +1,6 @@
+.env
+node_modules
+test_bcrypt.js
+test_token.js
+storage
+logs
