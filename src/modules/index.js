@@ -33,7 +33,7 @@ module.exports = {
   ParameterModule,
   StatusModule,
   ProjectStatusModule,
-  TasklistModule,
+    TasklistModule,
   SubtasklistModule,
   FileHandlerModule,
   ProjectAssigneeModule,

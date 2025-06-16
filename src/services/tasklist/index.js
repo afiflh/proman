@@ -58,6 +58,21 @@ class TasklistService {
         return formattedTaskLists;
     }
 
+    static async provideGetGanttChartByProject(projectId){
+        const tasklistsGantt  = await TaskList.findByProjectIdForGantt(projectId);
+        if (tasklistsGantt.length === 0) {
+            throw new CustomError("No task lists found for the selected project", 400)
+        }
+
+        const formattedTaskLists = tasklistsGantt.map(task => {
+            return {
+                ...task,
+            };
+        });
+
+        return formattedTaskLists;
+    }
+
     static async provideStore(bodyRequest, AuthUser) {
         const assignedUser = await User.findById(bodyRequest.assignee);
         if (assignedUser === null) {

@@ -151,6 +151,32 @@ class TaskListModel {
         }
     }
 
+    async findByProjectIdForGantt(project_id){
+        const sql = `
+                SELECT 
+                pt.kode, 
+                pt.title,
+                pt.created_at,
+                pt.duedate
+            FROM 
+                pm_tasklist pt
+            WHERE pt.project_id = $1
+            
+            GROUP BY 
+                pt.kode
+            ORDER BY 
+                pt.kode asc;
+        `;   
+        const params = [project_id];
+        try {
+            const result = await this.db.query(sql, params);
+            return result;
+        } catch (error) {
+            await this.db.close();
+            throw error;
+        }
+    }
+
     async findCode(kode) {
         const sql =
             `  SELECT 

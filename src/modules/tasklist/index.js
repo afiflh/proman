@@ -34,6 +34,16 @@ class TaskListModule {
       return next(error);
     }
   }
+  
+  static async getGanttChartByProject(req, res, next) {
+    try {
+      const { project_id } = req.params;
+      const result = await Service.provideGetGanttChartByProject(project_id);
+      ResponseHandler.success(req, res, "success fetching task list data", result, 200);
+    } catch (error) {
+      return next(error);
+    }
+  }
 
   // upload gambar ke endpoint gambar -> masuk ke route upload gambar
   static async store(req, res, next) {

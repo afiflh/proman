@@ -17,6 +17,12 @@ router.get(
   [middleware.use("auth")],
   TasklistModule.getByProjectId
 );
+
+router.get(
+  "/api/v1/task-list/:project_id/gantt-chart", 
+  TasklistModule.getGanttChartByProject
+)
+
 router.post(
   "/api/v1/task-list/store",
   [
